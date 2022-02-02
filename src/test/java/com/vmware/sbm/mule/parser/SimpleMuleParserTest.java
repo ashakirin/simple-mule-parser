@@ -8,7 +8,7 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimpleMuleParserTest {
-    private SimpleMuleParser parser = new SimpleMuleParser();
+    private final SimpleMuleParser parser = new SimpleMuleParser();
 
     @Test
     public void shouldReadXmlDocument() {
@@ -18,5 +18,16 @@ class SimpleMuleParserTest {
 
         assertNotNull(document);
         assertEquals(document.getDocumentElement().getNodeName(), "mule");
+    }
+
+    @Test
+    public void shouldReportAnErrorWhenInvalidXMLIsProvided() {
+        InputStream resourceAsStream = this.getClass().getResourceAsStream("/mule-configs-amqp/invalid.xml");
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            parser.parseMuleConfigurationAsDom(resourceAsStream);
+        });
+
+        assertEquals(thrown.getMessage(), "Error Parsing XML : Content is not allowed in prolog.");
     }
 }

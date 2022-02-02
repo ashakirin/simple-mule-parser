@@ -1,6 +1,7 @@
 package com.vmware.sbm.mule.parser;
 
 import org.w3c.dom.*;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,10 +18,12 @@ public class SimpleMuleParser {
             DocumentBuilder db = dbf.newDocumentBuilder();
             return db.parse(resourceAsStream);
         }
-        catch (Exception e) {
-            // swallow -- TODO:
+        catch (SAXParseException e) {
+            throw new RuntimeException("Error Parsing XML : " + e.getMessage(), e);
         }
-
-        return null;
+        catch (Exception e) {
+            // swallow - TODO:
+            return null;
+        }
     }
 }
