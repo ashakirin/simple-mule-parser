@@ -17,6 +17,6 @@ class SimpleMuleParserTest {
         Document document = parser.parseMuleConfigurationAsDom(resourceAsStream);
 
         assertNotNull(document);
+        assertEquals(document.getDocumentElement().getNodeName(), "mule");
     }
-
 }
