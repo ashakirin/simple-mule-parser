@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:amqp="http://www.mulesoft.org/schema/mule/amqp" xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/amqp http://www.mulesoft.org/schema/mule/amqp/current/mule-amqp.xsd">
+    <amqp:config name="AMQP_Config" doc:name="AMQP Config" doc:id="a1161a09-026e-48c8-918c-ce5d1855d68e" >
+        <amqp:connection host="localhost" port="5672" username="guest" password="guest"/>
+    </amqp:config>
+    <flow name="amqp-testFlow" doc:id="591949db-7702-437b-8945-7a8e0eeadf8d" >
+        <amqp:listener doc:name="Listener" doc:id="50219da8-efde-433e-a8ba-e4b657b9d803" config-ref="AMQP_Config" queueName="SecondQueue"/>
+        <logger level="INFO" doc:name="Logger" doc:id="017f86b2-60f7-4d3d-9e8f-ca84804d09ad" message="#[output application/java&#10;---&#10;payload]"/>
+        <amqp:publish doc:name="Publish"
+                      doc:id="33dd89d5-5a58-4979-81de-445a88159e8d" config-ref="AMQP_Config"
+                      exchangeName="si.out.exchange">
+            <amqp:routing-keys >
+                <amqp:routing-key value="si.out.queue" />
+            </amqp:routing-keys>
+        </amqp:publish>
+    </flow>
+</mule>
