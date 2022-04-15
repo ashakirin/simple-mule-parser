@@ -8,7 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 
-// Simple 1
+// Simple 1 2
 public class SimpleMuleParser {
 
     public Document parseMuleConfigurationAsDom(InputStream resourceAsStream) {
