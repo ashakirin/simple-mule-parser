@@ -9,9 +9,7 @@ import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.transformer.ObjectToStringTransformer;
 
-// dsl 1
-// dsl
-// m1 m2 m3 m4 m5 m6
+// dsl 1 2
 @Configuration
 public class JavaDSLAmqp {
     @Bean
