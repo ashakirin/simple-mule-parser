@@ -10,6 +10,7 @@ import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.transformer.ObjectToStringTransformer;
 
 // dsl
+// dsl amqp route
 @Configuration
 public class JavaDSLAmqp {
     @Bean
